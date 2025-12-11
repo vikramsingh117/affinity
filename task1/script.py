@@ -5,34 +5,37 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from prettytable import PrettyTable
 
-# auto-install correct driver for Chromium
 chromedriver_autoinstaller.install()
 
 chrome_options = Options()
-chrome_options.binary_location = "/usr/bin/chromium"
+chrome_options.binary_location = "/usr/bin/chromium"  # replace with your path
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--disable-gpu")
 
 driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://www.olx.in/items/q-car-cover")
-
 driver.implicitly_wait(20)
+
 html = driver.page_source
 driver.quit()
 
 soup = BeautifulSoup(html, "html.parser")
-ads = soup.select("li.EIR5N")
 
-table = PrettyTable(["Title", "Price"])
+ads = soup.select('li._1DNjI')
 
-# for ad in ads:
-    # title = ad.select_one("span._2tW1I")
-    # price = ad.select_one("span._89yzn")
-    
-    # table.add_row([
-    #     title.text.strip() if title else "N/A",
-    #     price.text.strip() if price else "N/A"
-    # ])
+table = PrettyTable(["Title", "Price", "Location"])
+
+for ad in ads:
+    title = ad.select_one('span[data-aut-id="itemTitle"]')
+    price = ad.select_one('span[data-aut-id="itemPrice"]')
+    location = ad.select_one('span[data-aut-id="item-location"]')
+
+    link_tag = ad.select_one("a._1fYFY")
+
+    table.add_row([
+        title.get_text(strip=True) if title else "N/A",
+        price.get_text(strip=True) if price else "N/A",
+        location.get_text(strip=True) if location else "N/A",
+    ])
 
 print(table)
