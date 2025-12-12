@@ -77,3 +77,14 @@ ncbi_id species
 29689   Oryza eichingeri
 188562  Oryza environmental sample
 4538    Oryza glaberrima (African rice)
+
+clan_member -> clan     clan_member.clan_acc = clan.clan_acc
+rice_species    longest_sequence
+Oryza granulata 
+
+task d:
+
+SHOW TABLES;
+DESCRIBE family;
+DESCRIBE full_region;
+DESCRIBE rfamseq;

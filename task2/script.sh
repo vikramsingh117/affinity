@@ -57,5 +57,21 @@ GROUP BY t.species
 ORDER BY longest_sequence DESC
 LIMIT 1;
 
+# SHOW TABLES;
+# DESCRIBE family;
+# DESCRIBE full_region;
+# DESCRIBE rfamseq;
+
+SELECT 
+    f.rfam_acc,
+    f.rfam_id AS family_name,
+    MAX(rs.length) AS max_length
+FROM family f
+JOIN full_region fr ON f.rfam_acc = fr.rfam_acc
+JOIN rfamseq rs ON fr.rfamseq_acc = rs.rfamseq_acc
+GROUP BY f.rfam_acc, f.rfam_id
+ORDER BY max_length DESC
+LIMIT 10;
+
 
 EOF
