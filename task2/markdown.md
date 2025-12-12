@@ -40,3 +40,40 @@ MySQL [Rfam]> SELECT ncbi_id, species
 MySQL [Rfam]> ^C
 MySQL [Rfam]> exit
 Bye
+
+
+Task2:
+using Describe, ER table given on the web page,
+SELECT column_name
+FROM information_schema.columns
+WHERE table_schema='Rfam'
+GROUP BY column_name
+HAVING COUNT(*) > 1;
+
+COLUMN_NAME
+cm
+rfam_acc
+seed
+author
+closed
+created
+lsf_id
+message
+opened
+
+Task c:
+
+SELECT ncbi_id, species
+FROM taxonomy
+WHERE species LIKE 'Oryza%';
+
+ncbi_id species
+4527    Oryza
+52545   Oryza alta
+4532    Oryza australiensis
+65489   Oryza barthii
+4533    Oryza brachyantha
+77588   Oryza coarctata
+29689   Oryza eichingeri
+188562  Oryza environmental sample
+4538    Oryza glaberrima (African rice)
