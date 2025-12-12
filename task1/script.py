@@ -8,9 +8,9 @@ from prettytable import PrettyTable
 chromedriver_autoinstaller.install()
 
 chrome_options = Options()
-chrome_options.binary_location = "/usr/bin/chromium"  # replace with your path
 chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--headless")
+chrome_options.binary_location = "/usr/bin/chromium"
 
 driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://www.olx.in/items/q-car-cover")

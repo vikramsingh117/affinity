@@ -37,9 +37,6 @@ MySQL [Rfam]> SELECT ncbi_id, species
 +---------+----------------------------------------------+
 29 rows in set (0.267 sec)
 
-MySQL [Rfam]> ^C
-MySQL [Rfam]> exit
-Bye
 
 
 Task2:
