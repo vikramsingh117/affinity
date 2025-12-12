@@ -1,7 +1,10 @@
 #!/bin/bash
 
-curl -L -s https://www.amfiindia.com/spages/NAVAll.txt \
-  | awk -F';' '{ print $4 "\t" $5 }' \
-  > nav.tsv
+URL="https://www.amfiindia.com/spages/NAVAll.txt"
 
-echo "Saved to nav.tsv"
+curl -L -s "$URL" \
+  | grep ";" \
+  | awk -F';' 'NF >= 5 { print $4 "\t" $5 }' \
+  > nav_output.tsv
+
+echo "Saved Scheme Name + NAV to nav_output.tsv"
